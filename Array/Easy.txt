@@ -1,1 +1,64 @@
 
+1.=======================================================================
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        // If the number is negative, return false
+        // If the last digit is zero, return false
+        if (x < 0 || x % 10 == 0 && x != 0) {
+            return false;
+        }
+
+        int secondHalf = 0;
+        while (x > secondHalf) {
+            secondHalf = x % 10 + secondHalf * 10;
+            x = x / 10;
+        }
+        // While first half > second half
+        // To get the last digit, x % 10 (1221 % 10 = 1)
+        // To get the Nnd to last digit, we can divide x / 10 (1221 / 10 = 122)in the first iteration, and then
+        // get the value from doing x % 10 (122 % 10 = 2)
+
+        // Multiply the previous digit by 10 (1 * 10) then add the most recent last digit, 1 * 10 + 2 = 12
+
+
+        //if first half == second half, return true
+        //if odd, if first half == second half / 10 return true
+
+        return x == secondHalf || x == secondHalf / 10;
+    }
+}
+====================================================================================
+2.===========================13.ROMAN TO INTEGER ======================================
+class Solution {
+    public int romanToInt(String s) {
+        int ans = 0, num = 0;
+        for (int i = s.length()-1; i >= 0; i--) {
+            switch(s.charAt(i)) {
+                case 'I': num = 1; break;
+                case 'V': num = 5; break;
+                case 'X': num = 10; break;
+                case 'L': num = 50; break;
+                case 'C': num = 100; break;
+                case 'D': num = 500; break;
+                case 'M': num = 1000; break;
+            }
+            if (4 * num < ans) ans -= num;
+            else ans += num;
+        }
+        return ans;
+    }
+}
+===================================================================================
+3.======================1929. Concatenation of Array===============================
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+        int[] ans = new int[2*nums.length];
+        for(int i = 0 ; i < nums.length ; i++) {
+            ans[i] = nums[i];
+            ans[i + nums.length] = nums[i];
+        }
+        return ans;
+    }
+}
+=====================================================================================
