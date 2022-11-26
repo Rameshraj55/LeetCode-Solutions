@@ -98,16 +98,32 @@ class Solution {
 }
 ===================================================================================
 7.==================1470. Shuffle the Array=========================================
+//HINT
+// [ 11,   22, 33,  44,  55,        66,           77,           88,            99,       100      ]
+// [ i=0, i=1, i=2, i=3, i=4,  0+5((i=0)+n), 0+6((i=1)+n), 0+7((i=2)+n), 0+8((i=3)+n), 0+9((i=4)+n)  ] // i is incrementing by 1 for each pass and here n =5 if //array size is even then n =10
+// then we can use this hint
 class Solution {
     public int[] shuffle(int[] nums, int n) {
         int[] ans = new int[2*n];
-
         for(int i=0; i<n ;i++){
-            ans[i*2] = nums[i];
-            ans[i*2+1] = nums[i+n];
+            ans[i*2] = nums[i];       // i*2 is EVEN INDEXED POSITION
+            ans[i*2+1] = nums[i+n];   // i*2+1 is ODD INDEXED POSITION
         }
         return ans;
     }
 }
 ===================================================================================
+8.=====================1512. Number of Good Pairs==================================
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int goodPairs = 0;
+        for(int i=0; i<nums.length ;i++){
+            for(int j=0; j<nums.length  ;j++){
+                if(nums[i] == nums[j] && i<j) goodPairs++; // WE USED INCREMENT instead of { goodPairs = goodPairs +1 or goodPairs += 1 } ;
+            }
+        }
+        return goodPairs;
+    }
+}
+=====================================================================================
 
