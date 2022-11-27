@@ -156,4 +156,22 @@ class Solution {
     }
 }
 ====================================================================================
+11.====================1431. Kids With the Greatest Number of Candies===============
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> result = new ArrayList<>();
+        int maxCandies = 0;
+
+        for(int i=0; i<candies.length ;i++){
+            if(candies[i] > maxCandies) maxCandies = candies[i];
+        }
+        
+        for(int j=0; j<candies.length ;j++){
+            //HERE I LEARNT THIS THING NEW USING TERNARY OPERATOR WISELY
+            result.add(candies[j] + extraCandies >= maxCandies ? true:false); 
+        } 
+        return result;  
+    }
+}
+=============================================================================================
 
