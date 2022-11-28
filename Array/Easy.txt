@@ -286,7 +286,7 @@ class Solution {
 class Solution {
     public int numJewelsInStones(String jewels, String stones) {
         int count=0;
-        for(char c:stones.toCharArray()){
+        for(char c:stones.toCharArray()){        //indexOf() method returns THE POSITION OF THE FIRST OCCURENCE OF SPECIFIED CHARACTER(S) IN A STRING
             if(jewels.indexOf(c)!=-1)count++;
         }
         return count;
