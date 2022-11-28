@@ -264,4 +264,33 @@ class Solution {
     }
 }
 =======================================================================================================
-15.==========================
+15.==========================771. Jewels and Stones====================================================
+//MY SOLUTION//
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        //CREATE AN HASHSET
+        HashSet<Character> hs = new HashSet<>();
+        int stonesCount = 0;
+
+        //filtering duplicates
+        for(char ch1 : jewels.toCharArray()) hs.add(ch1);
+
+        for(char ch2 : stones.toCharArray()) if(hs.contains(ch2)) stonesCount++;
+    
+        return stonesCount;
+    }
+}
+
+                    ------------------------------------------
+//OPTIMISED SOLUTION//
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        int count=0;
+        for(char c:stones.toCharArray()){
+            if(jewels.indexOf(c)!=-1)count++;
+        }
+        return count;
+    }
+}
+======================================================================================================================
+16.================================
