@@ -196,5 +196,50 @@ class Solution {
 TC=> O(nlogn) + O(n) +O(n) = O(nlogn)where nlogn for sorting, n for traversing the vector two times.
 https://medium.com/theleanprogrammer/how-many-numbers-are-smaller-than-the-current-number-a97921755aff
 ==========================================================================================================
+13.========================1313. Decompress Run-Length Encoded List===================================
+//MY SOLUTION
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
 
+        /*FROM PROBLEM WE OBSERVE THAT LOGIC IS
+            1. Sum of the freq = Noof elements inthe output
+                1.1 we need index positions of freq 0,2,4,6,8,10,.... (i=0; ;i+=2)
+            2. We add Value in array freq times
+            `   2.1 for loop i pointer assigning position index 1,3,5,7,9,.... (i=1;;i+=2)
+                2.2 for loop j pointer adding elements in output 0,1,2,3,.... (j=0;;j++)
+        */  
+        //FINDING SUM OF FREQUENCY
+        int freq = 0, currentIndex = 0 ;
+        for(int i=0; i<nums.length ; i+=2){
+            freq += nums[i];
+        }
+        //OUTPUT INT ARRAY
+        int[] output = new int[freq];
+        for(int i=1; i<nums.length; i+=2){
+            for(int j=0; j<nums[i-1] ;j++){
+                output[currentIndex++] = nums[i];
+            }
+        }
+        return output;
+        
+    }
+}
 
+//BEST SOLUTION WITH SC = O ms
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
+      int arrlen = 0;
+      for(int i=0;i<nums.length;i+=2)
+        arrlen+=nums[i];
+      int target[] = new int[arrlen];
+      
+      int start=0;
+      for (int i=0;i<nums.length;i+=2) 
+      {
+        Arrays.fill(target, start, start + nums[i], nums[i + 1]);
+        start+=nums[i];
+      }
+      return target;
+    }
+}
+=======================================================================================================
