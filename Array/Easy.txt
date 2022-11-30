@@ -306,3 +306,16 @@ class Solution {
         return arr;       
     }
 }
+======================================================================================================
+17.============================1528. Shuffle String=================================================
+//MY SOLUTION//
+class Solution {
+    public String restoreString(String s, int[] indices) {
+        char[] str =  new char[indices.length];
+        //ARRANGING CHARACTERS IN ORDER
+        for(int i=0; i<indices.length ;i++){
+            str[indices[i]] = s.charAt(i);  
+        }
+        return new String(str);
+    }
+}
