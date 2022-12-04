@@ -357,3 +357,38 @@ class Solution {
     
 }
 =========================================================================================================
+20.=========================1662. Check If Two String Arrays are Equivalent==============================
+//__________________________MY SOLUTION____________________________//
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+                String wordstr1 = new String();
+                String wordstr2 = new String();
+        for(int i=0; i<word1.length; i++){
+            wordstr1 += word1[i];
+           
+        }
+        for(int j=0; j<word2.length; j++){
+            wordstr2 += word2[j];
+        }
+        //R-TIP: IF RETURN TYPE IS BOOLEAN PREFER TERNARY OPERATOR
+        //IS ANY METHODS RETURN TYPE IS BOOLEAN USE THAT METHOD WISELY
+        //DON'T FORGET SEMICOLON IN RETURN STATEMENT
+        return wordstr1.equals(wordstr2);
+    }
+}
+
+//____________________BEST TC =  1ms_________________________________________//
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        StringBuilder one = new StringBuilder();
+        StringBuilder two = new StringBuilder();
+        for (String str : word1) {
+            one.append(str);
+        }
+        for (String str : word2) {
+            two.append(str);
+        }
+        return one.toString().equals(two.toString());
+    }
+}
+=================================================================================================================
