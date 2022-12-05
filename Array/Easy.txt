@@ -392,3 +392,51 @@ class Solution {
     }
 }
 =================================================================================================================
+21.===================2367. Number of Arithmetic Triplets=======================================================
+//#Array #Hash Table #Two Pointers #Enumeration
+//MY SOLUTION// BRUTE FORCE APPROACH//
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int noOfTriplets = 0;
+        for(int i=0; i<nums.length ;i++){//FIRST ELEMENT
+            for(int j=i+1; j<nums.length; j++){ // SECOND ELEMENT
+                for(int k=j+1; k<nums.length; k++)// THIRD ELEMENT
+                    if(nums[j] - nums[i] == diff && nums[k] - nums[j] == diff)
+                        noOfTriplets++;
+            }
+        }
+        return noOfTriplets;
+    }
+    //OPTIMAL SOLUTION - TC
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int count = 0;
+        boolean [] visited = new boolean [201];//ACCORDING TO CONSTRAINTS
+        for (int num : nums) {
+            if (num >= 2 * diff && visited[num - diff] && visited[num - 2 * diff]) { //MATHEMATICAL LOGIC IS USED
+                count++;
+            }
+            visited[num] = true;
+        }
+
+        return count;
+    }
+    //OPTIMAL SOLUTION - SC
+    class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int count_triplet = 0;
+        int two_diff = 2 * diff;
+        for (int i = nums.length-1; i >= 0; i--) {
+            int x = nums[i];
+            map.put(x, i);
+            if (map.get(x + diff) != null && map.get(x + two_diff) != null) {
+                count_triplet++;
+            }
+        }
+        return count_triplet;
+        
+    }
+}
+=======================================================================================================================
+
+
+
