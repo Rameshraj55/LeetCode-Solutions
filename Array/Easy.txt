@@ -553,6 +553,46 @@ class Solution {
 }
 
 =========================================================================================================================
-
-
-
+22.===========================1816. Truncate Sentence===============================================================
+// MY SOLUTION #Array #String
+class Solution {
+    public String truncateSentence(String s, int k) {
+        String[] words = s.split(" "); //I mistaked in defining DATATYPE char instead of String
+        String[] str = new String[k];
+        for(int i=0; i<k; i++){
+            str[i] = words[i];
+        }
+        return String.join(" ",str) ;
+    }
+}
+//______________________________________OPTIMAL SOLUTION TC_____________________________________
+class Solution {
+    public String truncateSentence(String s, int k) {
+    int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') //FINDING SPACE 
+                count++;
+            if (count == k)
+                return s.substring(0, i);
+        }
+        return s; 
+    }
+}
+//______________________________________OPTIMAL SOLUTION SC____________________________________
+class Solution {
+    public String truncateSentence(String s, int k) {
+        int n = s.length();
+        int count = 0;
+        int i = 0;
+        while(i<n){
+            if(s.charAt(i)==' '){
+                count++;
+                if(count==k) 
+                    return s.substring(0,i);
+            }
+            i++;
+        }
+        return s;
+    }
+}
+============================================================================================
