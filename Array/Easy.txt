@@ -437,6 +437,122 @@ class Solution {
     }
 }
 =======================================================================================================================
+22.===============================================2373. Largest Local Values in a Matrix================================
+
+// MY SOLUTION BRUTE FORCE// TAGS - #Arrays  #Matrix
+class Solution {
+    public int[][] largestLocal(int[][] grid) {
+        int[][] maxLocal = new int[grid.length-2][grid.length-2];
+        for(int i=0; i<grid.length-2; i++){
+            for(int j=0;j<grid.length-2; j++){
+                //MOVING MATRIX[k][q]
+                for(int k= i; k<i+3; k++){
+                    for(int q=j; q<j+3; q++){
+                        maxLocal[i][j]=Math.max(maxLocal[i][j],grid[k][q]);
+                    }
+                }
+            }
+        }
+        return maxLocal;
+
+
+
+    }
+}
+
+//__________________________OPTIMAL SOLUTION - TC___________________________________
+class Solution {
+     int[][] grid;
+    public int[][] largestLocal(int[][] grid) {
+        this.grid = grid;
+        
+		// limit the rows and cols that can be checked
+        int rows = grid.length - 2;
+        int cols = grid[0].length - 2;
+        
+        int[][] local = new int[rows][cols];
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++){
+                local[i][j] = findMax(i, j);
+            }
+        }
+        
+        return local;
+    }
+      public int findMax(int x, int y) {
+        int max = 0;
+        int rows = x + 3;
+        int cols = y + 3;
+        
+        for (int i = x; i < rows; i++) {
+            for (int j = y; j < cols; j++) {
+                if (grid[i][j] > max) max = grid[i][j];
+            }
+        }
+        
+        return max;
+    }
+}
+//______________________________________OPTIMAL SOLUTION SC__________________________________
+class Solution {
+    public int[][] largestLocal(int[][] grid) {
+        int[][] maxLocal = new int[grid.length-2][grid.length-2];
+        int x = 0;
+        int y = 0;
+        
+        for (int i = 1; i < grid.length - 1; i++)
+        {
+            for (int j = 1; j < grid.length - 1; j++)
+            {
+                PriorityQueue<Integer> mh = new PriorityQueue<>(Collections.reverseOrder());
+                mh.add(grid[i][j]);
+                //System.out.print(grid[i][j] + " ");
+                // Check left and right
+                //System.out.println(grid[i][j-1] + " " + grid[i][j] + " " + grid[i][j+1]);
+                mh.add(grid[i][j-1]);
+                mh.add(grid[i][j+1]);
+                // Check up and down
+                //System.out.println(grid[i-1][j] + " " + grid[i][j] + " " + grid[i+1][j]);
+                mh.add(grid[i-1][j]);
+                mh.add(grid[i+1][j]);
+                // Check diagnals
+                //System.out.println(grid[i-1][j-1] + " " + grid[i-1][j+1] + " " + grid[i+1][j-1] + " " + grid[i+1][j+1]);
+                mh.add(grid[i-1][j-1]);
+                mh.add(grid[i-1][j+1]);
+                mh.add(grid[i+1][j-1]);
+                mh.add(grid[i+1][j+1]);
+                
+                //System.out.println(mh);
+                if (x < maxLocal.length)
+                {
+                    if (y < maxLocal[0].length)
+                    {
+                        maxLocal[x][y] = mh.poll();
+                        //System.out.print(maxLocal[x][y]);
+                        y++;
+                    }
+                    else
+                    {
+                        x++;
+                        y = 0;
+                        maxLocal[x][y] = mh.poll();
+                        //System.out.print(maxLocal[x][y]);
+                        y++;
+                    }
+                }
+                
+                //System.out.println();
+                
+            }
+            //System.out.println();
+        }
+        
+        return maxLocal;
+    }
+}
+
+=========================================================================================================================
 
 
 
