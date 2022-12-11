@@ -6,4 +6,5 @@ public int[] getConcatenation(int[] nums) {
             ans[i + nums.length] = nums[i];
         }
         return ans;
+        
     }
