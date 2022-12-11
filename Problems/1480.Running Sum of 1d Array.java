@@ -4,5 +4,6 @@ public int[] runningSum(int[] nums) {
             nums[i]+=nums[i-1];
         }
         return nums;
+        
     }
     
