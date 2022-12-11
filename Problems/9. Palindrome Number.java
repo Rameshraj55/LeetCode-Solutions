@@ -22,7 +22,6 @@ class Solution {
 
         //if first half == second half, return true
         //if odd, if first half == second half / 10 return true
-
         return x == secondHalf || x == secondHalf / 10;
     }
 }
