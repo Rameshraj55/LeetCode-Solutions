@@ -8,4 +8,5 @@ public int finalValueAfterOperations(String[] operations) {
             else x--; //HERE ONLY WE SUBTRACT NOT CONSIDER PRE/POST INCREMENT
         }
         return x;
+        
     }
