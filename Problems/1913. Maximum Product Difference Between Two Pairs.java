@@ -1,3 +1,4 @@
+//Tags: Arrays , Sorting
 //MY SOLUTION  TC: O(NLogN)
 class MySolution {
     public int maxProductDifference(int[] nums) {
